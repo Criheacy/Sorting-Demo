@@ -33,6 +33,15 @@ class ElementContainer(object):
             for i in range(length):
                 random_value = random.randint(settings.random_range[0], settings.random_range[1])
                 self.elementList.append(Element(i,random_value,length))
+        if mode == "shuffled":
+            tempList = []
+            for i in range(length):
+                tempList.append(((length - i) * settings.random_range[0] + i * settings.random_range[1]) // length)
+            for i in range(length - 1):
+                pos = random.randint(i + 1, length - 1)
+                self.elementList.append(Element(i,tempList[pos],length))
+                tempList[pos] = tempList[i]
+            self.elementList.append(Element(length - 1,tempList[length - 1],length))
         elif type(mode) == list:
             pass
 

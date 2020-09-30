@@ -91,7 +91,10 @@ def MainLoop():
                 numbersBar.UpdateNumber(MOUSEPOS)
             elif LEFT_PRESSING_CONTROL == "SpanRandomButton":
                 showNoticeLabel = False
-                elementContainer = elm.ElementContainer("random",numbersBar.num)
+                if settings.use_gradiant_in_numbers_rank:
+                    elementContainer = elm.ElementContainer("shuffled",numbersBar.num)
+                else:
+                    elementContainer = elm.ElementContainer("random",numbersBar.num)
                 LEFT_PRESSING_CONTROL = None
             elif LEFT_PRESSING_CONTROL == "SortButton":
                 if elementContainer != None:
